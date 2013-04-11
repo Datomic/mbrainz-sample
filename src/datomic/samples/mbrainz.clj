@@ -28,8 +28,7 @@
 
 (defn pprint-entities
   [entities]
-  (doseq [e entities]
-   (pprint (d/touch e))))
+  (pprint (map d/touch entities)))
 
 ;;;;;;;;;;;;;;; schema queries ;;;;;;;;;;;;;;;;;;
 
@@ -41,6 +40,14 @@
 
 (pprint-entities
  (artist-tracks db "Foo Fighters"))
+
+;; Same query as above, with some post-processing on entities
+(pprint
+ (map (juxt (comp :release/name :release/_media :medium/_tracks) ;; Navigate "up"!
+            :track/position
+            :track/name
+            :track/duration)
+      (artist-tracks db "Foo Fighters")))
 
 (pprint-entities
  (tracks-by-name db "Zoom"))
