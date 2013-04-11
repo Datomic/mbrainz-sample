@@ -6,7 +6,7 @@
 ;;   the terms of this license.
 ;;   You must not remove this notice, or any other, from this software.
 
-(ns mbrainz.rules)
+(ns datomic.samples.mbrainz.rules)
 
 (defn net-rules
   [depth]

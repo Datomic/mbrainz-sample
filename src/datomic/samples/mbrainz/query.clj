@@ -6,15 +6,10 @@
 ;;   the terms of this license.
 ;;   You must not remove this notice, or any other, from this software.
 
-(ns mbrainz.query
-  (:require [clojure.pprint :as pp]
-            [datomic.api :as d]
+(ns datomic.samples.mbrainz.query
+  (:require [datomic.api :as d]
             [datomic.samples.query :as query]
-            [mbrainz.rules :refer (rules)]))
-
-(defn pprint-entity
-  [entity]
-  (pp/pprint (d/touch entity)))
+            [datomic.samples.mbrainz.rules :refer (rules)]))
 
 (defn qes
   "Returns a collection of entities, assuming the query returns a

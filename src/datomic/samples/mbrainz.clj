@@ -7,8 +7,9 @@
 ;;   You must not remove this notice, or any other, from this software.
 
 (ns datomic.samples.mbrainz
-  (:require [datomic.api :as d]
-            [mbrainz.query :as q :refer :all]))
+  (:require [clojure.pprint :as pp :refer [pprint]]
+            [datomic.api :as d]
+            [datomic.samples.mbrainz.query :as q :refer :all]))
 
 ;; this file is intended for evaluation, form-by-form, at the REPL
 
@@ -20,33 +21,50 @@
 (def conn (d/connect uri))
 (def db (d/db conn))
 
-;;;;;;;;;;;;;;; REPL safety ;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;; REPL safety and convenience ;;;;;;;;;;;;;;;;;;
 
 ;; for when you accidentally ask for all tracks...
 (set! *print-length* 250)
+
+(defn pprint-entities
+  [entities]
+  (doseq [e entities]
+   (pprint (d/touch e))))
 
 ;;;;;;;;;;;;;;; schema queries ;;;;;;;;;;;;;;;;;;
 
 
 ;;;;;;;;;;;;;;; data queries ;;;;;;;;;;;;;;;;;;
 
-(artists-by-name db "Prince")
+(pprint-entities
+ (artists-by-name db "Prince"))
 
-(artist-tracks db "Foo Fighters")
+(pprint-entities
+ (artist-tracks db "Foo Fighters"))
 
-(tracks-by-name db "Zoom")
+(pprint-entities
+ (tracks-by-name db "Zoom"))
 
-(track-search db "zombie")
+(pprint-entities
+ (track-search db "zombie"))
 
-(title-artists db "Sunshine")
-(title-artists db "Yesterday")
-(title-artists db "Zombie")
+(pprint
+ (title-artists db "Sunshine"))
+(pprint
+ (title-artists db "Yesterday"))
+(pprint
+ (title-artists db "Zombie"))
 
-(artist-short-tracks db "Foo Fighters" 100000)
+(pprint-entities
+ (artist-short-tracks db "Foo Fighters" 100000))
 
-(direct-collaborators db "Sting")
-(direct-collaborators db "Frank Zappa")
+(pprint
+ (direct-collaborators db "Sting"))
+(pprint
+ (direct-collaborators db "Frank Zappa"))
 
-(collab-net db "Paul McCartney")
+(pprint
+ (collab-net db "Paul McCartney"))
 
-(discography db "The Strokes")
+(pprint
+ (discography db "The Strokes"))
