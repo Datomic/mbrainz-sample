@@ -39,9 +39,9 @@ Then, start the transactor (using a large enough heap):
     bin/transactor -Xmx2g config/samples/free-transactor-template.properties
 
 Next, in a new shell, download the
-[mbrainz backup](https://s3.amazonaws.com/mbrainz/20130328-backup.zip):
+[mbrainz backup](http://s3.amazonaws.com/mbrainz/20130328-backup.zip):
 
-    wget https://s3.amazonaws.com/mbrainz/20130328-backup.zip
+    wget http://s3.amazonaws.com/mbrainz/20130328-backup.zip
     unzip 20130328-backup.zip # unzips as `backup`, and takes a while
 
 Finally, restore the backup:
