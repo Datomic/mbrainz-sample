@@ -41,11 +41,17 @@ Then, start the transactor (using a large enough heap):
 Next, in a new shell, download the
 [mbrainz backup](http://s3.amazonaws.com/mbrainz/20130328-backup.zip):
 
+    # 2.85 GB
     wget http://s3.amazonaws.com/mbrainz/20130328-backup.zip
-    unzip 20130328-backup.zip # unzips as `backup`, and takes a while
+
+and unzip:
+
+    # unzips as `backup`, and takes a while
+    unzip 20130328-backup.zip
 
 Finally, restore the backup:
 
+    # takes a while, but prints progress
     bin/datomic restore-db file:backup datomic:free://localhost:4334/mbrainz
 
 Now you're ready to fire up a REPL and evaluate the forms in
