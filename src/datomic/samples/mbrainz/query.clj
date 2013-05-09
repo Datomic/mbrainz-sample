@@ -11,6 +11,10 @@
             [datomic.samples.query :as query]
             [datomic.samples.mbrainz.rules :refer (rules)]))
 
+(defn schema
+  "Given an mbrainz db, returns the domain-level schema."
+  [db])
+
 (defn qes
   "Returns a collection of entities, assuming the query returns a
   single entity."
@@ -130,10 +134,16 @@
        (qes '[:find ?r
               :in $ ?aname
               :where [?a :artist/name ?aname]
-              [?r :artists ?a]
+              [?r :release/artists ?a]
               [?r :release/name]]
             db
             artist-name)))
+
+(defn what-albums-am-I-missing?
+  "Given a database, an artist-name, and a collection of album-names,
+  returns a vector of albums by the given artists not found in the
+  given album collection."
+  [db artist-name album-names])
 
 ;;;;;;;;;;;;;;; database stats ;;;;;;;;;;;;;;;;;;
 

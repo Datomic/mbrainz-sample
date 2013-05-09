@@ -61,19 +61,19 @@
 (def rules
   (concat '[[(artist-tracks ?aname ?t)
              [?a :artist/name ?aname]
-             [?t :artists ?a]]
+             [?t :track/artists ?a]]
 
             [(track-artists ?t ?aname)
-             [?t :artists ?a]
+             [?t :track/artists ?a]
              [?a :artist/name ?aname]]
 
             [(title-artists ?title ?aname)
              [?t :track/name ?title]
-             [?t :artists ?a]
+             [?t :track/artists ?a]
              [?a :artist/name ?aname]]
 
             [(short-track ?a ?t ?len ?max)
-             [?t :artists ?a]
+             [?t :track/artists ?a]
              [?t :track/duration ?len]
              [(< ?len ?max)]]
 
