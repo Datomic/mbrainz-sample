@@ -48,14 +48,14 @@
     (concat
      '[[(collab ?aname1 ?aname2)
         [?a1 :artist/name ?aname1]
-        (sibling-net-1 :artists ?a1 ?a2)
+        (sibling-net-1 :track/artists ?a1 ?a2)
         [?a2 :artist/name ?aname2]]
        [(collab-net-1 ?aname1 ?aname2)
         (collab ?aname1 ?aname2)]]
      (for [i (range 2 (inc depth))]
        [(list (collab-sym i) '?aname1 '?aname2)
         ['?a1 :artist/name '?aname1]
-        (list (sib-sym i) :artists '?a1 '?a2)
+        (list (sib-sym i) :track/artists '?a1 '?a2)
         ['?a2 :artist/name '?aname2]]))))
 
 (def rules
