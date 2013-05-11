@@ -39,20 +39,20 @@ Then, start the transactor (using a large enough heap):
     bin/transactor -Xmx2g config/samples/free-transactor-template.properties
 
 Next, in a new shell, download the
-[mbrainz backup](http://s3.amazonaws.com/mbrainz/20130328-backup.zip):
+[mbrainz backup](http://s3.amazonaws.com/mbrainz/20130510-backup.zip):
 
     # 2.85 GB
-    wget http://s3.amazonaws.com/mbrainz/20130328-backup.zip
+    wget http://s3.amazonaws.com/mbrainz/20130510-backup.zip
 
 and unzip:
 
-    # unzips as `backup`, and takes a while
-    unzip 20130328-backup.zip
+    # this takes a while
+    unzip 20130510-backup.zip
 
 Finally, restore the backup:
 
     # takes a while, but prints progress
-    bin/datomic restore-db file:backup datomic:free://localhost:4334/mbrainz
+    bin/datomic restore-db file:20130510-backup datomic:free://localhost:4334/mbrainz
 
 Now you're ready to fire up a REPL and evaluate the forms in
 src/datomic/samples/mbrainz.clj one at a time.
