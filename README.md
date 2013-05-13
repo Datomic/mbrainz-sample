@@ -51,7 +51,7 @@ Then, start the transactor (using a large enough heap):
 Next, in a new shell, download the
 [mbrainz backup](http://s3.amazonaws.com/mbrainz/20130510-backup.zip):
 
-    # 2.85 GB
+    # 2.6 GB
     wget http://s3.amazonaws.com/mbrainz/20130510-backup.zip
 
 and unzip:
