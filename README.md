@@ -57,6 +57,10 @@ Finally, restore the backup:
 Now you're ready to fire up a REPL and evaluate the forms in
 src/datomic/samples/mbrainz.clj one at a time.
 
+## Schema
+
+![mbrainz schema](schema.png)
+
 ## License
 
 Copyright © Metadata Partners, LLC. All rights reserved.
