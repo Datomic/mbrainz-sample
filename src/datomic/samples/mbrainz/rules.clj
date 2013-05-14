@@ -92,5 +92,4 @@
   rules
   (concat simple-rules
           (sibling-net-rules 10)
-          (collab-net-rules 10)
-          (net-rules 10)))
+          (collab-net-rules 10)))
