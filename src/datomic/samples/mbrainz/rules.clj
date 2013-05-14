@@ -8,22 +8,17 @@
 
 (ns datomic.samples.mbrainz.rules)
 
-(defn net-rules
-  [depth]
-  (let [net-depth (fn [i]
-                    (symbol (str "net-depth-" i)))]
-    (apply concat
-           '[[(net-depth-1 ?root ?attr ?nodes)
-              [?root ?attr ?nodes]]]
-           (for [i (range 2 (inc depth))]
-             [[(list (net-depth i) '?attr '?root '?nodes)
-               (list 'net-depth-1  '?attr '?root '?nodes)]
-              [(list (net-depth i) '?root '?attr '?nodes)
-               (list (net-depth 1) '?root '?attr '?x)
-               (list (net-depth (dec i)) '?x '?attr '?nodes)]]))))
-
 (defn sibling-net-rules
-  [n]
+  "Returns a set of rules for finding sibling entities of a given
+  entity for a given :db.cardinality/many attribute up to the given
+  depth.
+
+  For example, calling this function with a depth of 10 would return a
+  rule set against which you could query sibling-hood anywhere from
+  direct siblings to 10 levels of \"siblings-of-siblings\".
+
+  This is an example of generating graph-walking rulesets."
+  [depth]
   (let [sib-sym (fn [i]
                   (symbol (str "sibling-net-" i)))]
     (apply concat
@@ -31,7 +26,7 @@
               [?x ?attr ?a1]
               [?x ?attr ?a2]
               [(!= ?a1 ?a2)]]]
-           (for [i (range 2 (inc n))]
+           (for [i (range 2 (inc depth))]
              [[(list (sib-sym i) '?attr '?a1 '?a2)
                (list 'sibling-net-1 '?attr '?a1 '?a2)]
               [(list (sib-sym i) '?attr '?a1 '?a2)
@@ -40,6 +35,13 @@
                '[(!= ?a1 ?a2)]]]))))
 
 (defn collab-net-rules
+  "Returns a set of rules for querying an artist's collaboration
+  network up to the given depth using (sibling-net-rules).
+
+  For example, calling this function with a
+  depth of 10 would return a rule set against which you could query
+  an artist's collaboration network from direct collaborators to 10 levels of
+  \"collaborators-of-collaborators\"."
   [depth]
   (let [collab-sym (fn [i]
                      (symbol (str "collab-net-" i)))
@@ -58,32 +60,37 @@
         (list (sib-sym i) :track/artists '?a1 '?a2)
         ['?a2 :artist/name '?aname2]]))))
 
-(def rules
-  (concat '[[(artist-tracks ?aname ?t)
-             [?a :artist/name ?aname]
-             [?t :track/artists ?a]]
+(def ^{:doc "Rules for looking up entities by single attributes, predicate
+            matches, and full-text search."}
+  simple-rules
+  '[[(artist-tracks ?aname ?t)
+     [?a :artist/name ?aname]
+     [?t :track/artists ?a]]
 
-            [(track-artists ?t ?aname)
-             [?t :track/artists ?a]
-             [?a :artist/name ?aname]]
+    [(track-artists ?t ?aname)
+     [?t :track/artists ?a]
+     [?a :artist/name ?aname]]
 
-            [(title-artists ?title ?aname)
-             [?t :track/name ?title]
-             [?t :track/artists ?a]
-             [?a :artist/name ?aname]]
+    [(title-artists ?title ?aname)
+     [?t :track/name ?title]
+     (track-artists ?t ?aname)]
 
-            [(short-track ?a ?t ?len ?max)
-             [?t :track/artists ?a]
-             [?t :track/duration ?len]
-             [(< ?len ?max)]]
+    [(short-track ?a ?t ?len ?max)
+     [?t :track/artists ?a]
+     [?t :track/duration ?len]
+     [(< ?len ?max)]]
 
-            [(artist-short-tracks ?aname ?t ?len ?max)
-             [?a :artist/name ?aname]
-             (short-track ?a ?t ?len ?max)]
+    [(artist-short-tracks ?aname ?t ?len ?max)
+     [?a :artist/name ?aname]
+     (short-track ?a ?t ?len ?max)]
 
-            [(track-search ?q ?track ?tname ?aname)
-             [(fulltext $ :track/name ?q) [[?track ?tname]]]
-             (track-artists ?track ?aname)]]
+    [(track-search ?q ?track)
+     [(fulltext $ :track/name ?q) [[?track ?tname]]]]])
+
+(def ^{:doc "A convenient collection of rules from this namespace.  Each
+            graph-walking ruleset is taken to depth 10."}
+  rules
+  (concat simple-rules
           (sibling-net-rules 10)
           (collab-net-rules 10)
           (net-rules 10)))
