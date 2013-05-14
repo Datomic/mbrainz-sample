@@ -1,4 +1,4 @@
-# MusicBrainz on Datomic
+# Datomic MusicBrainz sample database
 
 [Datomic](http://datomic.com) is a database of flexible, time-based
 facts, supporting queries and joins with elastic scalability, and ACID
@@ -10,7 +10,7 @@ This sample project uses the MusicBrainz dataset, but is in no way
 affiliated with or sponsored by MusicBrainz.
 
 The MusicBrainz dataset makes a great example database for learning,
-evaluating, or testing Datomic.  For this sample database, we have
+evaluating, or testing Datomic.  To create this sample database, we have
 exported the MusicBrainz distribution database as EDN data files,
 imported that data into Datomic according to the Schema described
 below, and [backed up](http://docs.datomic.com/backup.html) that
@@ -24,29 +24,27 @@ Included in this project are:
 
 ## Getting Started
 
-You need to do two things to use this sample: get the sample code and
-get the Datomic backup containing the mbrainz data.
-
-### Getting the Code
-
-Clone the git repo somewhere convenient:
-
-    git clone git@github.com:Datomic/mbrainz-sample.git
-    cd mbrainz-sample
-
-## Getting the Data
+### Getting Datomic
 
 First download a
-[Datomic distribution](http://www.datomic.com/get-datomic.html), and
+[Datomic distribution](http://www.datomic.com/get-datomic.html) and
 unzip it somewhere convenient:
 
-    wget http://downloads.datomic.com/0.8.3862/datomic-free-$VERSION.zip
+    wget http://downloads.datomic.com/$VERSION/datomic-free-$VERSION.zip
     unzip datomic-free-$VERSION.zip
 
-Then, start the transactor (using a large enough heap):
+For this walkthrough, we'll use
+[Datomic Free](http://downloads.datomic.com/free.html) and local
+storage, but you could use
+[Datomic Pro](http://downloads.datomic.com/pro.html) with any of the
+available [storage options](http://docs.datomic.com/storage.html).
+
+Then, start the transactor (using a reasonably large heap):
 
     cd datomic-free-$VERSION
     bin/transactor -Xmx2g config/samples/free-transactor-template.properties
+
+### Getting the Data
 
 Next, in a new shell, download the
 [mbrainz backup](http://s3.amazonaws.com/mbrainz/20130510-backup.zip):
@@ -64,8 +62,25 @@ Finally, [restore the backup](http://docs.datomic.com/backup.html):
     # takes a while, but prints progress
     bin/datomic restore-db file:20130510-backup datomic:free://localhost:4334/mbrainz
 
-Now you're ready to fire up a REPL and evaluate the forms in
-`src/datomic/samples/mbrainz.clj` one at a time.
+### Getting the Code
+
+Clone this git repo somewhere convenient:
+
+    git clone git@github.com:Datomic/mbrainz-sample.git
+    cd mbrainz-sample
+
+### Running the examples
+
+Now you're ready to fire up a REPL in this and evaluate the forms in
+`examples/datomic/samples/mbrainz.clj` one at a time:
+
+    # using Leiningen 2
+    lein repl
+    => ;; run the examples
+
+The Datomic Peer library is included as a dependency in `project.clj`,
+and so will be on the classpath automatically.  See
+`examples/datomic/samples/mbrainz.clj` for example usage.
 
 ## Schema
 
@@ -79,7 +94,7 @@ assumptions and combined some entities.  In particular:
 * We de-normalize to use :db.cardinality/many where appropriate
 * We renamed [Release group](http://musicbrainz.org/doc/Release_Group) to "abstractRelease"
 
-### Abstract Release vs. Release
+### Abstract Release vs. Release vs. Medium
 
 (Adapted from the MusicBrainz [schema docs](http://musicbrainz.org/doc/MusicBrainz_Database/Schema))
 
@@ -88,9 +103,27 @@ Pink Floyd).  A "release" is something you can buy in your music store
 (e.g. the 1984 US vinyl release of "The Wall" by Columbia, as opposed
 to the 2000 US CD release by Capitol Records).
 
+Therefore, when you query for releases e.g. by name, you may see
+duplicate releases.  To find just the "work of art" level album
+entity, query for abstractRelease.
+
+The media are the physical components comprising a release (disks,
+CDs, tapes, cartriges, piano rolls).  One medium will have several
+tracks, and the total tracks across all media represent the track list
+of the release.
+
 ### Diagram
 
 ![mbrainz schema](schema.png)
+
+## Queries and Rules
+
+
+
+## Thanks
+
+We would like to thank the MusicBrainz project for defining and
+compiling a great dataset, and for making it freely available.
 
 ## License
 

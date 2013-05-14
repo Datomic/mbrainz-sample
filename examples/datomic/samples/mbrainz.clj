@@ -26,35 +26,26 @@
 ;; for when you accidentally ask for all tracks...
 (set! *print-length* 250)
 
-(defn pprint-entities
-  [entities]
-  (pprint (map d/touch entities)))
-
 ;;;;;;;;;;;;;;; schema queries ;;;;;;;;;;;;;;;;;;
 
 ;; TODO
 
 ;;;;;;;;;;;;;;; data queries ;;;;;;;;;;;;;;;;;;
 
-(pprint-entities
- (artists-by-name db "Prince"))
+(artists-by-name db "Prince")
 
-(pprint-entities
- (artist-tracks db "Foo Fighters"))
+(artist-tracks db "Foo Fighters")
 
 ;; Same query as above, with some post-processing on entities
-(pprint
- (map (juxt (comp :release/name :release/_media :medium/_tracks) ;; Navigate "up"!
-            :track/position
-            :track/name
-            :track/duration)
-      (artist-tracks db "Foo Fighters")))
+(map (juxt (comp :release/name :release/_media :medium/_tracks) ;; Navigate "up"!
+           :track/position
+           :track/name
+           :track/duration)
+     (artist-tracks db "Foo Fighters"))
 
-(pprint-entities
- (tracks-by-name db "Zoom"))
+(tracks-by-name db "Zoom")
 
-(pprint-entities
- (track-search db "zombie"))
+(track-search db "zombie")
 
 (pprint
  (title-artists db "Sunshine"))
@@ -63,13 +54,10 @@
 (pprint
  (title-artists db "Zombie"))
 
-(pprint-entities
- (artist-short-tracks db "Foo Fighters" 100000))
+(artist-short-tracks db "Foo Fighters" 100000)
 
-(pprint
- (direct-collaborators db "Sting"))
-(pprint
- (direct-collaborators db "Frank Zappa"))
+(direct-collaborators db "Sting")
+(direct-collaborators db "Frank Zappa")
 
 (pprint
  (collab-net db "Paul McCartney"))
