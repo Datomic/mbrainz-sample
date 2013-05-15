@@ -39,10 +39,10 @@ storage, but you could use
 [Datomic Pro](http://downloads.datomic.com/pro.html) with any of the
 available [storage options](http://docs.datomic.com/storage.html).
 
-Then, start the transactor (using a reasonably large heap):
+Then, start the transactor:
 
     cd datomic-free-$VERSION
-    bin/transactor -Xmx2g config/samples/free-transactor-template.properties
+    bin/transactor config/samples/free-transactor-template.properties
 
 ### Getting the Data
 
