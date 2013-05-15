@@ -161,6 +161,14 @@
             db
             artist-name)))
 
+;;;; Aggregation
+
+(defn artist-summary
+  [db artist-name])
+
+(defn longest-band-name
+  [db])
+
 ;;;; Fun stuff
 
 (defn what-albums-am-I-missing?
@@ -168,9 +176,6 @@
   returns a vector of albums by the given artists not found in the
   given album collection."
   [db artist-name album-names])
-
-(defn artist-summary
-  [db artist-name])
 
 (defn artist-v-artist
   [db artist-1-name artist-2-name])

@@ -48,6 +48,7 @@
         sib-sym    (fn [i]
                      (symbol (str "sibling-net-" i)))]
     (concat
+     (sibling-net-rules depth)
      '[[(collab ?aname1 ?aname2)
         [?a1 :artist/name ?aname1]
         (sibling-net-1 :track/artists ?a1 ?a2)
@@ -91,5 +92,4 @@
             graph-walking ruleset is taken to depth 10."}
   rules
   (concat simple-rules
-          (sibling-net-rules 10)
           (collab-net-rules 10)))
