@@ -5,7 +5,7 @@
 
  ;; super-enum attributes
  ;; all super-enum values are represented as entities in the
- ;; data partition w/ :db/ident and one of the following name
+ ;; user partition w/ :db/ident and one of the following name
  ;; attributes
  {:db/id #db/id[:db.part/db]
   :db/ident :country/name
