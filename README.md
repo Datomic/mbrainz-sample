@@ -84,41 +84,16 @@ and so will be on the classpath automatically.  See
 
 ## Schema
 
-This schema is an adaptation of a subset of the full
-[MusicBrainz schema](http://musicbrainz.org/doc/MusicBrainz_Database/Schema).
-We didn't include some entities, and we made some simplifying
-assumptions and combined some entities.  In particular:
+Here is a diagram of the relationships:
 
-* We omit any notion of [Work](http://musicbrainz.org/doc/Work)
-* We combine Track, Tracklist and [Recording](http://musicbrainz.org/doc/Recording) into simply "track"
-* We de-normalize to use :db.cardinality/many where appropriate
-* We renamed [Release group](http://musicbrainz.org/doc/Release_Group) to "abstractRelease"
+![Mbrainz Relationships](relationships.png)
 
-### Abstract Release vs. Release vs. Medium
-
-(Adapted from the MusicBrainz [schema docs](http://musicbrainz.org/doc/MusicBrainz_Database/Schema))
-
-An "abstractRelease" is an abstract "album" entity (e.g. "The Wall" by
-Pink Floyd).  A "release" is something you can buy in your music store
-(e.g. the 1984 US vinyl release of "The Wall" by Columbia, as opposed
-to the 2000 US CD release by Capitol Records).
-
-Therefore, when you query for releases e.g. by name, you may see
-duplicate releases.  To find just the "work of art" level album
-entity, query for abstractRelease.
-
-The media are the physical components comprising a release (disks,
-CDs, tapes, cartriges, piano rolls).  One medium will have several
-tracks, and the total tracks across all media represent the track list
-of the release.
-
-### Diagram
-
-![mbrainz schema](schema.png)
+For information about the individual entities and their attributes,
+please see the [schema](wiki/Schema) page in the wiki, or the [EDN schema](schema.edn).
 
 ## Queries and Rules
 
-
+Please see the [queries](wiki/Queries) page in the wiki.
 
 ## Thanks
 
