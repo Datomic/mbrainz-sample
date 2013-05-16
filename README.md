@@ -79,7 +79,7 @@ Start up the Datomic [shell](http://docs.datomic.com/shell.html):
     bin/shell
 
 then
-[connect to the database](http://docs.datomic.com/javadoc/datomic/Peer.html#connect(java.lang.Object))
+[connect to the database](http://docs.datomic.com/javadoc/datomic/Peer.html#connect(java.lang.Object\))
 and run the [queries](//github.com/Datomic/mbrainz-sample/wiki/Queries).
 
 #### From Clojure
