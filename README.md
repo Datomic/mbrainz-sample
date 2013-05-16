@@ -80,7 +80,7 @@ Start up the Datomic [shell](http://docs.datomic.com/shell.html):
 
 then
 [connect to the database](http://docs.datomic.com/javadoc/datomic/Peer.html#connect(java.lang.Object))
-and run the [queries](wiki/Queries).
+and run the [queries](//github.com/Datomic/mbrainz-sample/wiki/Queries).
 
 #### From Clojure
 
@@ -91,7 +91,7 @@ Start up a Clojure REPL:
 
 then
 [connect](http://docs.datomic.com/clojure/index.html#datomic.api/connect)
-to the database and run the [queries](wiki/Queries).
+to the database and run the [queries](//github.com/Datomic/mbrainz-sample/wiki/Queries).
 
 ## Schema
 
@@ -100,12 +100,12 @@ Here is a diagram of the relationships:
 ![Mbrainz Relationships](relationships.png)
 
 For information about the individual entities and their attributes,
-please see the [schema](wiki/Schema) page in the wiki, or the
+please see the [schema](//github.com/Datomic/mbrainz-sample/wiki/Schema) page in the wiki, or the
 [EDN schema](schema.edn) itself.
 
 ## Queries and Rules
 
-Please see the [queries](wiki/Queries) page in the wiki.
+Please see the [queries](//github.com/Datomic/mbrainz-sample/wiki/Queries) page in the wiki.
 
 ## Thanks
 
