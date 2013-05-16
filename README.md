@@ -99,13 +99,16 @@ Here is a diagram of the relationships:
 
 ![Mbrainz Relationships](relationships.png)
 
-For information about the individual entities and their attributes,
-please see the [schema](//github.com/Datomic/mbrainz-sample/wiki/Schema) page in the wiki, or the
-[EDN schema](schema.edn) itself.
+For information about the schema in general, or about individual
+entities and their attributes, please see the
+[schema](//github.com/Datomic/mbrainz-sample/wiki/Schema) page in the
+wiki, or the [EDN schema](schema.edn) itself.
 
-## Queries and Rules
+## Example Queries and Rules
 
-Please see the [queries](//github.com/Datomic/mbrainz-sample/wiki/Queries) page in the wiki.
+Please see the
+[queries](//github.com/Datomic/mbrainz-sample/wiki/Queries) page in
+the wiki.
 
 ## Thanks
 
