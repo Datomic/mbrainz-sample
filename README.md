@@ -71,16 +71,27 @@ Clone this git repo somewhere convenient:
 
 ### Running the examples
 
-Now you're ready to fire up a REPL in this and evaluate the forms in
-`examples/datomic/samples/mbrainz.clj` one at a time:
+#### From Java
 
-    # using Leiningen 2
+Start up the Datomic [shell](http://docs.datomic.com/shell.html):
+
+    # from root of Datomic distribution
+    bin/shell
+
+then
+[connect to the database](http://docs.datomic.com/javadoc/datomic/Peer.html#connect(java.lang.Object))
+and run the [queries](wiki/Queries).
+
+#### From Clojure
+
+Start up a Clojure REPL:
+
+    # from the root of this mbrainz-sample repo
     lein repl
-    => ;; run the examples
 
-The Datomic Peer library is included as a dependency in `project.clj`,
-and so will be on the classpath automatically.  See
-`examples/datomic/samples/mbrainz.clj` for example usage.
+then
+[connect](http://docs.datomic.com/clojure/index.html#datomic.api/connect)
+to the database and run the [queries](wiki/Queries).
 
 ## Schema
 
@@ -89,7 +100,8 @@ Here is a diagram of the relationships:
 ![Mbrainz Relationships](relationships.png)
 
 For information about the individual entities and their attributes,
-please see the [schema](wiki/Schema) page in the wiki, or the [EDN schema](schema.edn).
+please see the [schema](wiki/Schema) page in the wiki, or the
+[EDN schema](schema.edn) itself.
 
 ## Queries and Rules
 
