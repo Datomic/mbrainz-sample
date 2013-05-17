@@ -16,7 +16,8 @@
 ;;;;;;;;;;;;;;; get a connection ;;;;;;;;;;;;;;;;;;
 
 ;; Replace with your transactor's connection information
-(def uri "datomic:free://localhost:4334/mbrainz")
+(def uri "datomic:sql://mbrainz?jdbc:postgresql://localhost:5432/datomic?user=datomic&password=datomic"
+  #_"datomic:free://localhost:4334/mbrainz")
 
 (def conn (d/connect uri))
 (def db (d/db conn))
