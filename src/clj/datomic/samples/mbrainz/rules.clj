@@ -49,40 +49,40 @@
                      (symbol (str "sibling-net-" i)))]
     (concat
      (sibling-net-rules depth)
-     '[[(collab ?aname1 ?aname2)
-        [?a1 :artist/name ?aname1]
+     '[[(collab ?artist-name-1 ?artist-name-2)
+        [?a1 :artist/name ?artist-name-1]
         (sibling-net-1 :track/artists ?a1 ?a2)
-        [?a2 :artist/name ?aname2]]
-       [(collab-net-1 ?aname1 ?aname2)
-        (collab ?aname1 ?aname2)]]
+        [?a2 :artist/name ?artist-name-2]]
+       [(collab-net-1 ?artist-name-1 ?artist-name-2)
+        (collab ?artist-name-1 ?artist-name-2)]]
      (for [i (range 2 (inc depth))]
-       [(list (collab-sym i) '?aname1 '?aname2)
-        ['?a1 :artist/name '?aname1]
+       [(list (collab-sym i) '?artist-name-1 '?artist-name-2)
+        ['?a1 :artist/name '?artist-name-1]
         (list (sib-sym i) :track/artists '?a1 '?a2)
-        ['?a2 :artist/name '?aname2]]))))
+        ['?a2 :artist/name '?artist-name-2]]))))
 
 (def ^{:doc "Rules for looking up entities by single attributes, predicate
             matches, and full-text search."}
   simple-rules
-  '[[(artist-tracks ?aname ?t)
-     [?a :artist/name ?aname]
+  '[[(track-artists ?t ?a)
      [?t :track/artists ?a]]
 
-    [(track-artists ?t ?aname)
-     [?t :track/artists ?a]
-     [?a :artist/name ?aname]]
+    [(artist-tracks ?artist-name ?t)
+     [?a :artist/name ?artist-name]
+     (track-artists ?t ?a)]
 
-    [(title-artists ?title ?aname)
+    [(title-artist-names ?title ?artist-name)
      [?t :track/name ?title]
-     (track-artists ?t ?aname)]
+     (track-artists ?t ?a)
+     [?a :artist/name ?artist-name]]
 
     [(short-track ?a ?t ?len ?max)
      [?t :track/artists ?a]
      [?t :track/duration ?len]
      [(< ?len ?max)]]
 
-    [(artist-short-tracks ?aname ?t ?len ?max)
-     [?a :artist/name ?aname]
+    [(artist-short-tracks ?artist-name ?t ?len ?max)
+     [?a :artist/name ?artist-name]
      (short-track ?a ?t ?len ?max)]
 
     [(track-search ?q ?track)
