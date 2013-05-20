@@ -13,5 +13,4 @@
                  ;; enable the pro version below
                  #_[com.datomic/datomic-pro "0.8.3960"]]
   :source-paths ["src/clj" "examples/clj"]
-  :plugins      [[lein-marginalia "0.7.1"]]
   :jvm-opts ["-Xmx1g" "-server"])
