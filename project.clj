@@ -6,11 +6,8 @@
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [com.datomic/datomic-free "0.8.3960"]
 
-                 ;; Download Pro from http://downloads.datomic.com/pro.html
-                 ;; unzip, then cd into distribution root
-                 ;; Run `bin/maven-install` to install to local maven repository
-                 ;; Then, comment out the free version above, and
-                 ;; enable the pro version below
+                 ;; To run on Datomic Pro, comment out the free
+                 ;; version above, and enable the pro version below
                  #_[com.datomic/datomic-pro "0.8.3960"]]
   :source-paths ["src/clj" "examples/clj"]
   :jvm-opts ["-Xmx1g" "-server"])

@@ -37,7 +37,8 @@ For this walkthrough, we'll use
 [Datomic Free](http://downloads.datomic.com/free.html) and local
 storage, but you could use
 [Datomic Pro](http://downloads.datomic.com/pro.html) with any of the
-available [storage options](http://docs.datomic.com/storage.html).
+available [storage options](http://docs.datomic.com/storage.html) by
+uncommenting the Pro dependency in [project.clj](project.clj).
 
 Then, start the transactor:
 
