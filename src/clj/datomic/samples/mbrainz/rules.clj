@@ -64,26 +64,22 @@
 (def ^{:doc "Rules for looking up entities by single attributes, predicate
             matches, and full-text search."}
   simple-rules
-  '[[(track-artists ?t ?a)
-     [?t :track/artists ?a]]
+  '[[(track-release ?t ?r)
+     [?m :medium/tracks ?t]
+     [?r :release/media ?m]]
 
-    [(artist-tracks ?artist-name ?t)
-     [?a :artist/name ?artist-name]
-     (track-artists ?t ?a)]
-
-    [(title-artist-names ?title ?artist-name)
-     [?t :track/name ?title]
-     (track-artists ?t ?a)
-     [?a :artist/name ?artist-name]]
+    [(track-info ?t ?track-name ?artist-name ?album ?year)
+     [?t :track/name    ?track-name]
+     [?t :track/artists ?a]
+     [?a :artist/name   ?artist-name]
+     (track-release ?t ?r)
+     [?r :release/name  ?album]
+     [?r :release/year  ?year]]
 
     [(short-track ?a ?t ?len ?max)
      [?t :track/artists ?a]
      [?t :track/duration ?len]
      [(< ?len ?max)]]
-
-    [(artist-short-tracks ?artist-name ?t ?len ?max)
-     [?a :artist/name ?artist-name]
-     (short-track ?a ?t ?len ?max)]
 
     [(track-search ?q ?track)
      [(fulltext $ :track/name ?q) [[?track ?tname]]]]])
