@@ -79,9 +79,8 @@ Start up the Datomic [shell](http://docs.datomic.com/shell.html):
     # from root of Datomic distribution
     bin/shell
 
-then
-[connect to the database](http://docs.datomic.com/javadoc/datomic/Peer.html#connect(java.lang.Object\))
-and run the [queries](//github.com/Datomic/mbrainz-sample/wiki/Queries).
+then connect to the database and run the
+[queries](//github.com/Datomic/mbrainz-sample/wiki/Queries).
 
 #### From Clojure
 
@@ -90,9 +89,8 @@ Start up a Clojure REPL:
     # from the root of this mbrainz-sample repo
     lein repl
 
-then
-[connect](http://docs.datomic.com/clojure/index.html#datomic.api/connect)
-to the database and run the [queries](//github.com/Datomic/mbrainz-sample/wiki/Queries).
+then connect to the database and run the
+[queries](//github.com/Datomic/mbrainz-sample/wiki/Queries).
 
 ## Schema
 
