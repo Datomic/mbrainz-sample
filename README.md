@@ -48,15 +48,15 @@ Then, start the transactor:
 ### Getting the Data
 
 Next, in a new shell, download the
-[mbrainz backup](http://s3.amazonaws.com/mbrainz/datomic-mbrainz-backup-20130522.zip):
+[mbrainz backup](http://s3.amazonaws.com/mbrainz/datomic-mbrainz-backup-20130522.tar):
 
-    # 2.7 GB
-    wget http://s3.amazonaws.com/mbrainz/datomic-mbrainz-backup-20130522.zip
+    # 2.99 GB
+    wget http://s3.amazonaws.com/mbrainz/datomic-mbrainz-backup-20130522.tar
 
-and unzip:
+and extract:
 
     # this takes a while
-    unzip datomic-mbrainz-backup-20130522.zip
+    tar -xvf datomic-mbrainz-backup-20130522.tar
 
 Finally, [restore the backup](http://docs.datomic.com/backup.html):
 
