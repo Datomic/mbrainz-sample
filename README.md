@@ -50,7 +50,7 @@ Then, start the transactor:
 Next, in a new shell, download the
 [mbrainz backup](http://s3.amazonaws.com/mbrainz/datomic-mbrainz-backup-20130522.tar):
 
-    # 2.99 GB
+    # 2.8 GB
     wget http://s3.amazonaws.com/mbrainz/datomic-mbrainz-backup-20130522.tar
 
 and extract:
@@ -86,7 +86,7 @@ Start up a Clojure REPL:
     # from the root of this mbrainz-sample repo
     lein repl
 
-then connect to the database and run the
+Then connect to the database and run the
 [queries](//github.com/Datomic/mbrainz-sample/wiki/Queries).
 
 ## Schema
