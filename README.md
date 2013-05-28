@@ -33,7 +33,7 @@ unzip it somewhere convenient:
     wget http://downloads.datomic.com/$VERSION/datomic-free-$VERSION.zip
     unzip datomic-free-$VERSION.zip
 
-For this walkthrough, we'll use
+For this walk-through, we'll use
 [Datomic Free](http://downloads.datomic.com/free.html) and local
 storage, but you could use
 [Datomic Pro](http://downloads.datomic.com/pro.html) with any of the
@@ -87,8 +87,8 @@ Start up a Clojure REPL:
     # from the root of this mbrainz-sample repo
     lein repl
 
-Then connect to the database and run the
-[queries](//github.com/Datomic/mbrainz-sample/wiki/Queries).
+Then
+[connect to the database and run the queries](//github.com/Datomic/mbrainz-sample/wiki/Queries).
 
 ## Schema
 
