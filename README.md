@@ -51,7 +51,7 @@ Next download the
 [mbrainz backup](http://s3.amazonaws.com/mbrainz/datomic-mbrainz-backup-20130528.tar):
 
     # in a new shell (or just click the link above)
-    # 2.8 GB, md5 9c6028a84a5d8541c9f1bc99da06b750
+    # 2.8 GB, md5 df85cb426e4010a54c6f282560676ad2
     wget http://s3.amazonaws.com/mbrainz/datomic-mbrainz-backup-20130528.tar
 
 and extract:
