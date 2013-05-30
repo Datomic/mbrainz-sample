@@ -8,8 +8,8 @@
 
 (ns datomic.samples.mbrainz.rules)
 
-(defn sibling-net-rules
-  "Returns a set of rules for finding sibling entities of a given
+(defn transitive-net-rules
+  "Returns a set of rules for finding transitive entities of a given
   entity for a given :db.cardinality/many attribute up to the given
   depth.
 
@@ -20,15 +20,15 @@
   This is an example of generating graph-walking rulesets."
   [depth]
   (let [sib-sym (fn [i]
-                  (symbol (str "sibling-net-" i)))]
+                  (symbol (str "transitive-net-" i)))]
     (apply concat
-           '[[(sibling-net-1 ?attr ?a1 ?a2)
+           '[[(transitive-net-1 ?attr ?a1 ?a2)
               [?x ?attr ?a1]
               [?x ?attr ?a2]
               [(!= ?a1 ?a2)]]]
            (for [i (range 2 (inc depth))]
              [[(list (sib-sym i) '?attr '?a1 '?a2)
-               (list 'sibling-net-1 '?attr '?a1 '?a2)]
+               (list 'transitive-net-1 '?attr '?a1 '?a2)]
               [(list (sib-sym i) '?attr '?a1 '?a2)
                (list (sib-sym (dec i)) '?attr '?a1 '?x)
                (list (sib-sym (dec i)) '?attr '?x '?a2)
@@ -36,7 +36,7 @@
 
 (defn collab-net-rules
   "Returns a set of rules for querying an artist's collaboration
-  network up to the given depth using (sibling-net-rules).
+  network up to the given depth using (transitive-net-rules).
 
   For example, calling this function with a
   depth of 10 would return a rule set against which you could query
@@ -46,12 +46,12 @@
   (let [collab-sym (fn [i]
                      (symbol (str "collab-net-" i)))
         sib-sym    (fn [i]
-                     (symbol (str "sibling-net-" i)))]
+                     (symbol (str "transitive-net-" i)))]
     (concat
-     (sibling-net-rules depth)
+     (transitive-net-rules depth)
      '[[(collab ?artist-name-1 ?artist-name-2)
         [?a1 :artist/name ?artist-name-1]
-        (sibling-net-1 :track/artists ?a1 ?a2)
+        (transitive-net-1 :track/artists ?a1 ?a2)
         [?a2 :artist/name ?artist-name-2]]
        [(collab-net-1 ?artist-name-1 ?artist-name-2)
         (collab ?artist-name-1 ?artist-name-2)]]
