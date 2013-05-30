@@ -28,135 +28,124 @@
 
 ;;;;;;;;;;;;;;; data queries ;;;;;;;;;;;;;;;;;;
 
-(time
- (d/q '[:find ?title
-        :in $ ?artist-name
-        :where
-        [?a :artist/name ?artist-name]
-        [?t :track/artists ?a]
-        [?t :track/name ?title]]
-      db
-      "John Lennon"))
+(d/q '[:find ?title
+       :in $ ?artist-name
+       :where
+       [?a :artist/name ?artist-name]
+       [?t :track/artists ?a]
+       [?t :track/name ?title]]
+     db
+     "John Lennon")
 
-(time
- (d/q '[:find ?title ?album ?year
-        :in $ ?artist-name
-        :where
-        [?a :artist/name   ?artist-name]
-        [?t :track/artists ?a]
-        [?t :track/name    ?title]
-        [?m :medium/tracks ?t]
-        [?r :release/media ?m]
-        [?r :release/name  ?album]
-        [?r :release/year  ?year]]
-      db
-      "John Lennon"))
+(d/q '[:find ?title ?album ?year
+       :in $ ?artist-name
+       :where
+       [?a :artist/name   ?artist-name]
+       [?t :track/artists ?a]
+       [?t :track/name    ?title]
+       [?m :medium/tracks ?t]
+       [?r :release/media ?m]
+       [?r :release/name  ?album]
+       [?r :release/year  ?year]]
+     db
+     "John Lennon")
 
-(time
- (d/q '[:find ?title ?album ?year
-        :in $ ?artist-name
-        :where
-        [?a :artist/name   ?artist-name]
-        [?t :track/artists ?a]
-        [?t :track/name    ?title]
-        [?m :medium/tracks ?t]
-        [?r :release/media ?m]
-        [?r :release/name  ?album]
-        [?r :release/year  ?year]
-        [(<= ?year 1980)]]
-      db
-      "John Lennon"))
+(d/q '[:find ?title ?album ?year
+       :in $ ?artist-name
+       :where
+       [?a :artist/name   ?artist-name]
+       [?t :track/artists ?a]
+       [?t :track/name    ?title]
+       [?m :medium/tracks ?t]
+       [?r :release/media ?m]
+       [?r :release/name  ?album]
+       [?r :release/year  ?year]
+       [(<= ?year 1980)]]
+     db
+     "John Lennon")
 
-(time
- (d/q '[:find ?title ?album ?year
-        :in $ % ?artist-name
-        :where
-        [?a :artist/name   ?artist-name]
-        [?t :track/artists ?a]
-        [?t :track/name    ?title]
-        (track-release ?t ?r)
-        [?r :release/name  ?album]
-        [?r :release/year  ?year]]
-      db
-      rules
-      "John Lennon"))
+(d/q '[:find ?title ?album ?year
+       :in $ % ?artist-name
+       :where
+       [?a :artist/name   ?artist-name]
+       [?t :track/artists ?a]
+       [?t :track/name    ?title]
+       (track-release ?t ?r)
+       [?r :release/name  ?album]
+       [?r :release/year  ?year]]
+     db
+     rules
+     "John Lennon")
 
-(time
- (d/q '[:find ?title ?artist ?album ?year
-        :in $ % ?search
-        :where
-        (track-search ?search ?track)
-        (track-info ?track ?title ?artist ?album ?year)]
-      db
-      rules
-      "zombie"))
+(d/q '[:find ?title ?artist ?album ?year
+       :in $ % ?search
+       :where
+       (track-search ?search ?track)
+       (track-info ?track ?title ?artist ?album ?year)]
+     db
+     rules
+     "zombie")
 
-(time
- (d/q '[:find ?artist ?rname ?type
-        :in $ ?aname
-        :where
-        [?a :artist/name ?aname]
-        [?ar :abstractRelease/artists ?a]
-        [?ar :abstractRelease/name ?rname]
-        [?ar :abstractRelease/artistCredit ?artist]
-        [?ar :abstractRelease/type ?type-e]
-        [?type-e :db/ident ?type]]
-      db
-      "The Beatles"))
+(d/q '[:find ?artist ?rname ?type
+       :in $ ?aname
+       :where
+       [?a :artist/name ?aname]
+       [?ar :abstractRelease/artists ?a]
+       [?ar :abstractRelease/name ?rname]
+       [?ar :abstractRelease/artistCredit ?artist]
+       [?ar :abstractRelease/type ?type-e]
+       [?type-e :db/ident ?type]]
+     db
+     "The Beatles")
 
-(time
- (d/q '[:find ?aname ?aname2
-        :in $ % [?aname ...]
-        :where (collab ?aname ?aname2)]
-      db rules ["John Lennon" "Paul McCartney" "George Harrison" "Ringo Starr"]))
+(d/q '[:find ?aname ?aname2
+       :in $ % [?aname ...]
+       :where (collab ?aname ?aname2)]
+     db rules ["John Lennon" "Paul McCartney" "George Harrison" "Ringo Starr"])
 
-(time
- (d/q '[:find ?aname ?aname2
-        :in $ % ?aname
-        :where (collab-net-2 ?aname ?aname2)]
-      db
-      rules
-      "Paul McCartney"))
+(d/q '[:find ?aname ?aname2
+       :in $ % ?aname
+       :where (collab-net-2 ?aname ?aname2)]
+     db
+     rules
+     "Paul McCartney")
 
 (def query '[:find ?aname2
              :in $ % [[?aname]]
              :where (collab ?aname ?aname2)])
 
-(time
- (d/q query
-      db
-      rules
-      (d/q query
-           db
-           rules
-           [["Paul McCartney"]])))
+(d/q query
+     db
+     rules
+     (d/q query
+          db
+          rules
+          [["Paul McCartney"]]))
 
 
-(time
- (d/q '[:find ?aname (count ?e)
-        :with ?a
-        :in $ ?criterion [?aname ...]
-        :where
-        [?a :artist/name ?aname]
-        [?e ?criterion ?a]]
-      db
-      :abstractRelease/artists
-      ["Jay-Z" "Beyoncé Knowles"]))
+(d/q '[:find ?aname (count ?e)
+       :with ?a
+       :in $ ?criterion [?aname ...]
+       :where
+       [?a :artist/name ?aname]
+       [?e ?criterion ?a]]
+     db
+     :abstractRelease/artists
+     ["Jay-Z" "Beyoncé Knowles"])
 
-(time
- (d/q '[:find ?aname ?tname
-        :in $ ?artist-name
-        :where
-        [?a :artist/name ?artist-name]
-        [?t :track/artists ?a]
-        [?t :track/name ?tname]
-        [(!= "Outro" ?tname)]
-        [(!= "[outro]" ?tname)]
-        [(!= "Intro" ?tname)]
-        [(!= "[intro]" ?tname)]
-        [?t2 :track/name ?tname]
-        [?t2 :track/artists ?a2]
-        [(!= ?a2 ?a)]
-        [?a2 :artist/name ?aname]]
-      db
-      "The Who"))
+(d/q '[:find ?aname ?tname
+       :in $ ?artist-name
+       :where
+       [?a :artist/name ?artist-name]
+       [?t :track/artists ?a]
+       [?t :track/name ?tname]
+       [(!= "Outro" ?tname)]
+       [(!= "[outro]" ?tname)]
+       [(!= "Intro" ?tname)]
+       [(!= "[intro]" ?tname)]
+       [?t2 :track/name ?tname]
+       [?t2 :track/artists ?a2]
+       [(!= ?a2 ?a)]
+       [?a2 :artist/name ?aname]]
+     db
+     "The Who")
