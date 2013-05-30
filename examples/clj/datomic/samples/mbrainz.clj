@@ -84,7 +84,7 @@
        (track-info ?track ?title ?artist ?album ?year)]
      db
      rules
-     "zombie")
+     "nevermore")
 
 (d/q '[:find ?artist ?rname ?type
        :in $ ?aname
