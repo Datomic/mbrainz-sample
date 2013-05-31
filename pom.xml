@@ -21,8 +21,7 @@
   </scm>
   <build>
     <sourceDirectory>src/clj</sourceDirectory>
-    <testSourceDirectory>test</testSourceDirectory>
-    <resources>
+      <resources>
       <resource>
         <directory>resources</directory>
       </resource>
@@ -51,7 +50,7 @@
             </goals>
             <configuration>
               <sources>
-                <source>examples/clj</source>
+                <source>examples/java</source>
               </sources>
             </configuration>
           </execution>
@@ -90,7 +89,7 @@
     <dependency>
       <groupId>com.datomic</groupId>
       <artifactId>datomic-free</artifactId>
-      <version>0.8.3983</version>
+      <version>0.8.3971</version>
     </dependency>
     <dependency>
       <groupId>org.clojure</groupId>
