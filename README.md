@@ -75,10 +75,14 @@ Clone this git repo somewhere convenient:
 
 #### From Java
 
-Start up the Datomic [shell](http://docs.datomic.com/shell.html):
+Fire up your favorite IDE, and configure it to use the following Java options when running:
 
-    # from root of Datomic distribution
-    bin/shell
+```
+-Xmx2g -server
+```
+
+Then visit the
+[queries](//github.com/Datomic/mbrainz-sample/wiki/Queries) page.
 
 #### From Clojure
 
