@@ -1,0 +1,108 @@
+[[(track-release ?t ?r) [?m :medium/tracks ?t] [?r :release/media ?m]]
+ [(track-info ?t ?track-name ?artist-name ?album ?year)
+  [?t :track/name ?track-name]
+  [?t :track/artists ?a]
+  [?a :artist/name ?artist-name]
+  (track-release ?t ?r)
+  [?r :release/name ?album]
+  [?r :release/year ?year]]
+ [(short-track ?a ?t ?len ?max)
+  [?t :track/artists ?a]
+  [?t :track/duration ?len]
+  [(< ?len ?max)]]
+ [(track-search ?q ?track)
+  [(fulltext $ :track/name ?q) [[?track ?tname]]]]
+ [(transitive-net-1 ?attr ?a1 ?a2)
+  [?x ?attr ?a1]
+  [?x ?attr ?a2]
+  [(!= ?a1 ?a2)]]
+ [(transitive-net-2 ?attr ?a1 ?a2) (transitive-net-1 ?attr ?a1 ?a2)]
+ [(transitive-net-2 ?attr ?a1 ?a2)
+  (transitive-net-1 ?attr ?a1 ?x)
+  (transitive-net-1 ?attr ?x ?a2)
+  [(!= ?a1 ?a2)]]
+ [(transitive-net-3 ?attr ?a1 ?a2) (transitive-net-1 ?attr ?a1 ?a2)]
+ [(transitive-net-3 ?attr ?a1 ?a2)
+  (transitive-net-2 ?attr ?a1 ?x)
+  (transitive-net-2 ?attr ?x ?a2)
+  [(!= ?a1 ?a2)]]
+ [(transitive-net-4 ?attr ?a1 ?a2) (transitive-net-1 ?attr ?a1 ?a2)]
+ [(transitive-net-4
+   ?attr ?a1 ?a2)
+  (transitive-net-3 ?attr ?a1 ?x)
+  (transitive-net-3 ?attr ?x ?a2)
+  [(!= ?a1 ?a2)]]
+ [(transitive-net-5 ?attr ?a1 ?a2) (transitive-net-1 ?attr ?a1 ?a2)]
+ [(transitive-net-5 ?attr ?a1 ?a2)
+  (transitive-net-4 ?attr ?a1 ?x)
+  (transitive-net-4 ?attr ?x ?a2)
+  [(!= ?a1 ?a2)]]
+ [(transitive-net-6 ?attr ?a1 ?a2) (transitive-net-1 ?attr ?a1 ?a2)]
+ [(transitive-net-6 ?attr ?a1 ?a2)
+  (transitive-net-5 ?attr ?a1 ?x)
+  (transitive-net-5 ?attr ?x ?a2)
+  [(!= ?a1 ?a2)]]
+ [(transitive-net-7 ?attr ?a1 ?a2) (transitive-net-1 ?attr ?a1 ?a2)]
+ [(transitive-net-7 ?attr ?a1 ?a2)
+  (transitive-net-6 ?attr ?a1 ?x)
+  (transitive-net-6 ?attr ?x ?a2)
+  [(!= ?a1 ?a2)]]
+ [(transitive-net-8 ?attr ?a1 ?a2) (transitive-net-1 ?attr ?a1 ?a2)]
+ [(transitive-net-8 ?attr ?a1 ?a2)
+  (transitive-net-7 ?attr ?a1 ?x)
+  (transitive-net-7 ?attr ?x ?a2)
+  [(!= ?a1 ?a2)]]
+ [(transitive-net-9 ?attr ?a1 ?a2) (transitive-net-1 ?attr ?a1 ?a2)]
+ [(transitive-net-9 ?attr ?a1 ?a2)
+  (transitive-net-8 ?attr ?a1 ?x)
+  (transitive-net-8 ?attr
+                    ?x ?a2)
+  [(!= ?a1 ?a2)]]
+ [(transitive-net-10 ?attr ?a1 ?a2) (transitive-net-1 ?attr ?a1 ?a2)]
+ [(transitive-net-10 ?attr ?a1 ?a2)
+  (transitive-net-9 ?attr ?a1 ?x)
+  (transitive-net-9 ?attr ?x ?a2)
+  [(!= ?a1 ?a2)]]
+ [(collab ?artist-name-1 ?artist-name-2)
+  [?a1 :artist/name ?artist-name-1]
+  (transitive-net-1 :track/artists ?a1 ?a2)
+  [?a2 :artist/name ?artist-name-2]]
+ [(collab-net-1 ?artist-name-1 ?artist-name-2)
+  (collab ?artist-name-1 ?artist-name-2)]
+ [(collab-net-2 ?artist-name-1 ?artist-name-2)
+  [?a1 :artist/name ?artist-name-1]
+  (transitive-net-2 :track/artists ?a1 ?a2)
+  [?a2 :artist/name ?artist-name-2]]
+ [(collab-net-3 ?artist-name-1 ?artist-name-2)
+  [?a1 :artist/name ?artist-name-1]
+  (transitive-net-3 :track/artists ?a1 ?a2)
+  [?a2 :artist/name ?artist-name-2]]
+ [(collab-net-4 ?artist-name-1 ?artist-name-2)
+  [?a1 :artist/name ?artist-name-1]
+  (transitive-net-4 :track/artists ?a1 ?a2)
+  [?a2 :artist/name ?artist-name-2]]
+ [(collab-net-5 ?artist-name-1 ?artist-name-2)
+  [?a1 :artist/name
+   ?artist-name-1]
+  (transitive-net-5 :track/artists ?a1 ?a2)
+  [?a2 :artist/name ?artist-name-2]]
+ [(collab-net-6 ?artist-name-1 ?artist-name-2)
+  [?a1 :artist/name ?artist-name-1]
+  (transitive-net-6 :track/artists ?a1 ?a2)
+  [?a2 :artist/name ?artist-name-2]]
+ [(collab-net-7 ?artist-name-1 ?artist-name-2)
+  [?a1 :artist/name ?artist-name-1]
+  (transitive-net-7 :track/artists ?a1 ?a2)
+  [?a2 :artist/name ?artist-name-2]]
+ [(collab-net-8 ?artist-name-1 ?artist-name-2)
+  [?a1 :artist/name ?artist-name-1]
+  (transitive-net-8 :track/artists ?a1 ?a2)
+  [?a2 :artist/name ?artist-name-2]]
+ [(collab-net-9 ?artist-name-1 ?artist-name-2)
+  [?a1 :artist/name ?artist-name-1]
+  (transitive-net-9 :track/artists ?a1 ?a2)
+  [?a2 :artist/name ?artist-name-2]]
+ [(collab-net-10 ?artist-name-1 ?artist-name-2)
+  [?a1 :artist/name ?artist-name-1]
+  (transitive-net-10 :track/artists ?a1 ?a2)
+  [?a2 :artist/name ?artist-name-2]]]
