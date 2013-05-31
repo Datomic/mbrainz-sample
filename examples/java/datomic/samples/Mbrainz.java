@@ -19,7 +19,7 @@ public class Mbrainz {
     InputStream rulesInputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("rules.edn");
 
     Database db = conn.db();
-    Object rules = readAll(new PushbackReader(new InputStreamReader(rulesInputStream)));
+    Object rules = readAll(new PushbackReader(new InputStreamReader(rulesInputStream))).get(0);
 
     System.out.println(rules);
 
