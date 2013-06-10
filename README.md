@@ -75,7 +75,8 @@ Clone this git repo somewhere convenient:
 
 #### From Java
 
-Fire up your favorite IDE, and configure it to use the following Java options when running:
+Fire up your favorite IDE, and configure it to use both the included
+[pom.xml](./pom.xml) and the following Java options when running:
 
 ```
 -Xmx2g -server
