@@ -50,7 +50,7 @@ Then, start the transactor:
 Next download the
 [mbrainz backup](http://s3.amazonaws.com/mbrainz/datomic-mbrainz-backup-20130611.tar):
 
-    # 2.8 GB, md5 8bf4e1e3f459a94bc06505fbe5f31ef3
+    # 2.8 GB, md5 4e7d254c77600e68e9dc71b1a2785c53
     wget http://s3.amazonaws.com/mbrainz/datomic-mbrainz-backup-20130611.tar
 
 and extract:
