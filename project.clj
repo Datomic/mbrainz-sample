@@ -10,4 +10,4 @@
                  ;; version above, and enable the pro version below
                  #_[com.datomic/datomic-pro "0.8.4020.24"]]
   :source-paths ["src/clj" "examples/clj"]
-  :jvm-opts ["-Xmx2g" "-server"])
+  :jvm-opts ^:replace ["-Xmx2g" "-server"])
