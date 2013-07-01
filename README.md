@@ -50,7 +50,6 @@ Then, start the transactor:
 Next download the
 [mbrainz backup](http://s3.amazonaws.com/mbrainz/datomic-mbrainz-backup-20130611.tar):
 
-    # in a new shell (or just click the link above)
     # 2.8 GB, md5 8bf4e1e3f459a94bc06505fbe5f31ef3
     wget http://s3.amazonaws.com/mbrainz/datomic-mbrainz-backup-20130611.tar
 
@@ -62,7 +61,7 @@ and extract:
 Finally, [restore the backup](http://docs.datomic.com/backup.html):
 
     # takes a while, but prints progress -- ~150,000 segments in restore
-    bin/datomic restore-db file:/full/path/to/datomic-mbrainz-backup-20130611 datomic:free://localhost:4334/mbrainz
+    bin/datomic restore-db file:datomic-mbrainz-backup-20130611 datomic:free://localhost:4334/mbrainz
 
 ### Getting the Code
 
@@ -78,9 +77,7 @@ Clone this git repo somewhere convenient:
 Fire up your favorite IDE, and configure it to use both the included
 [pom.xml](./pom.xml) and the following Java options when running:
 
-
     -Xmx2g -server
-
 
 Then visit the
 [queries](//github.com/Datomic/mbrainz-sample/wiki/Queries) page.
