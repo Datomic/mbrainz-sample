@@ -61,7 +61,7 @@ and extract:
 Finally, [restore the backup](http://docs.datomic.com/backup.html):
 
     # takes a while, but prints progress -- ~150,000 segments in restore
-    bin/datomic restore-db file:/path/where/you/downloaded/datomic-mbrainz-backup-20130611 datomic:free://localhost:4334/mbrainz
+    bin/datomic restore-db file:/path/to/datomic-mbrainz-backup-20130611 datomic:free://localhost:4334/mbrainz
 
 ### Getting the Code
 
