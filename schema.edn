@@ -235,9 +235,9 @@
   :db.install/_attribute :db.part/db}
 
  {:db/id #db/id[:db.part/db]
-  :db/ident :release/label
+  :db/ident :release/labels
   :db/valueType :db.type/ref
-  :db/cardinality :db.cardinality/one
+  :db/cardinality :db.cardinality/many
   :db.install/_attribute :db.part/db}
 
  {:db/id #db/id[:db.part/db]
