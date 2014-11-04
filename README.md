@@ -50,7 +50,7 @@ Then, start the transactor:
 Next download the
 [full mbrainz backup](http://s3.amazonaws.com/mbrainz/datomic-mbrainz-backup-20130611.tar)
 or the
-[subset of the database](http://s3.amazonaws.com/mbrainz/datomic-mbrainz-1968-1973-backup-2014-10-15.tar)
+[subset of the database](http://s3.amazonaws.com/mbrainz/datomic-mbrainz-1968-1973-backup-2014-11-04.tar)
 covering the period 1968-1973 (which the Datomic team has
 scientifically determined as being the most important period in the
 history of recorded music):
@@ -58,7 +58,7 @@ history of recorded music):
     # 2.8 GB, md5 4e7d254c77600e68e9dc71b1a2785c53
     wget http://s3.amazonaws.com/mbrainz/datomic-mbrainz-backup-20130611.tar -O mbrainz.tar
     # or
-    wget http://s3.amazonaws.com/mbrainz/datomic-mbrainz-1968-1973-backup-2014-10-15.tar -O mbrainz.tar
+    wget http://s3.amazonaws.com/mbrainz/datomic-mbrainz-1968-1973-backup-2014-11-04.tar -O mbrainz.tar
 
 and extract:
 
