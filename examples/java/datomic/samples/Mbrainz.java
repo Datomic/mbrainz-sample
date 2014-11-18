@@ -93,23 +93,6 @@ public class Mbrainz {
 
     System.out.println(result);
 
-    System.out.println("What is the full set of Beatles albums?");
-
-    result = q(
-        "[:find ?artist ?rname ?type\n" +
-            " :in $ ?aname\n" +
-            " :where\n" +
-            " [?a :artist/name ?aname]\n" +
-            " [?ar :abstractRelease/artists ?a]\n" +
-            " [?ar :abstractRelease/name ?rname]\n" +
-            " [?ar :abstractRelease/artistCredit ?artist]\n" +
-            " [?ar :abstractRelease/type ?type-e]\n" +
-            " [?type-e :db/ident ?type]]\n",
-        db, "The Beatles"
-    );
-
-    System.out.println(result);
-
     System.out.println("What are the titles, artists, album names, and release years of all tracks having the word \"nevermore\" in their titles?");
 
     result = q(
@@ -118,7 +101,7 @@ public class Mbrainz {
             " :where\n" +
             " (track-search ?search ?track)\n" +
             " (track-info ?track ?title ?artist ?album ?year)]\n",
-        db, rules, "nevermore"
+        db, rules, "always"
     );
 
     System.out.println(result);
