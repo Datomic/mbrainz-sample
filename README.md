@@ -48,27 +48,18 @@ Then, start the transactor:
 ### Getting the Data
 
 Next download the
-[full mbrainz backup](http://s3.amazonaws.com/mbrainz/datomic-mbrainz-backup-20130611.tar)
-or the
-[subset of the database](http://s3.amazonaws.com/mbrainz/datomic-mbrainz-1968-1973-backup-2014-11-04.tar)
+[subset of the mbrainz database](http://s3.amazonaws.com/mbrainz/datomic-mbrainz-1968-1973-backup-2014-11-04.tar)
 covering the period 1968-1973 (which the Datomic team has
 scientifically determined as being the most important period in the
 history of recorded music):
 
-    # 2.8 GB, md5 4e7d254c77600e68e9dc71b1a2785c53
-    wget http://s3.amazonaws.com/mbrainz/datomic-mbrainz-backup-20130611.tar -O mbrainz.tar
-    # or
     wget http://s3.amazonaws.com/mbrainz/datomic-mbrainz-1968-1973-backup-2014-11-04.tar -O mbrainz.tar
-
-and extract:
-
-    # this takes a while
     tar -xvf mbrainz.tar
 
 Finally, [restore the backup](http://docs.datomic.com/backup.html):
 
-    # takes a while, but prints progress -- ~150,000 segments in restore
-    bin/datomic restore-db file:///path/to/mbrainz-backup datomic:free://localhost:4334/mbrainz
+    # prints progress -- ~1,000 segments in restore
+    bin/datomic restore-db file:///path/to/mbrainz-backup datomic:free://localhost:4334/mbrainz-1968-1973
 
 ### Getting the Code
 

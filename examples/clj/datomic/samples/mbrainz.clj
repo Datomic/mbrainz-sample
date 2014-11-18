@@ -16,7 +16,7 @@
 ;;;;;;;;;;;;;;; get a connection ;;;;;;;;;;;;;;;;;;
 
 ;; Replace with your transactor's connection information
-(def uri "datomic:free://localhost:4334/mbrainz")
+(def uri "datomic:free://localhost:4334/mbrainz-1968-1973")
 
 (def conn (d/connect uri))
 (def db (d/db conn))
@@ -84,19 +84,7 @@
        (track-info ?track ?title ?artist ?album ?year)]
      db
      rules
-     "nevermore")
-
-(d/q '[:find ?artist ?rname ?type
-       :in $ ?aname
-       :where
-       [?a :artist/name ?aname]
-       [?ar :abstractRelease/artists ?a]
-       [?ar :abstractRelease/name ?rname]
-       [?ar :abstractRelease/artistCredit ?artist]
-       [?ar :abstractRelease/type ?type-e]
-       [?type-e :db/ident ?type]]
-     db
-     "The Beatles")
+     "always")
 
 (d/q '[:find ?aname ?aname2
        :in $ % [?aname ...]
@@ -104,11 +92,11 @@
      db rules ["John Lennon" "Paul McCartney" "George Harrison" "Ringo Starr"])
 
 (d/q '[:find ?aname ?aname2
-       :in $ % ?aname
+       :in $ % [?aname ...]
        :where (collab-net-2 ?aname ?aname2)]
      db
      rules
-     "Paul McCartney")
+     ["John Lennon" "Paul McCartney" "George Harrison" "Ringo Starr"])
 
 (def query '[:find ?aname2
              :in $ % [[?aname]]
@@ -120,18 +108,8 @@
      (d/q query
           db
           rules
-          [["Paul McCartney"]]))
+          [["John Lennon" "Paul McCartney" "George Harrison" "Ringo Starr"]]))
 
-
-(d/q '[:find ?aname (count ?e)
-       :with ?a
-       :in $ ?criterion [?aname ...]
-       :where
-       [?a :artist/name ?aname]
-       [?e ?criterion ?a]]
-     db
-     :abstractRelease/artists
-     ["Jay-Z" "Beyoncé Knowles"])
 
 (d/q '[:find ?aname ?tname
        :in $ ?artist-name
