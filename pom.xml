@@ -86,19 +86,19 @@
       <groupId>org.clojure</groupId>
       <artifactId>clojure</artifactId>
       <version>1.5.1</version>
-    </dependency>
-    <dependency>
+  </dependency>
+  <!-- To use Datomic Free, comment out the section below and uncomment the section here.
+    <dependency
       <groupId>com.datomic</groupId>
       <artifactId>datomic-free</artifactId>
       <version>0.8.4020.24</version>
     </dependency>
-    <!-- To use Datomic Pro, comment out the section above and uncomment the section below
+    -->
         <dependency>
         <groupId>com.datomic</groupId>
         <artifactId>datomic-pro</artifactId>
-        <version>0.8.4020.24</version>
+        <version>0.9.5067</version>
         </dependency>
-    -->
     <dependency>
       <groupId>org.clojure</groupId>
       <artifactId>tools.nrepl</artifactId>
