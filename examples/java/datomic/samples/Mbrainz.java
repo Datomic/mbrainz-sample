@@ -134,48 +134,33 @@ public class Mbrainz {
 
     System.out.println(result);
 
-    System.out.println("Who either directly collaborated with Paul McCartney, or collaborated with one of his collaborators?");
+    System.out.println("Who either directly collaborated any of the Beatles, or collaborated with one of their collaborators?");
 
     result = q(
-        "[:find ?aname2\n" +
-            " :in $ % ?aname\n" +
+        "[:find ?aname ?aname2\n" +
+            " :in $ % [?aname ...]\n" +
             " :where (collab-net-2 ?aname ?aname2)]\n",
-        db, rules, "Paul McCartney"
+        db, rules, list("Paul McCartney", "John Lennon", "George Harrison", "Ringo Starr")
     );
 
     System.out.println(result);
 
-    System.out.println("Who either directly collaborated with Paul McCartney, or collaborated with one of his collaborators? (via recursion)");
+    System.out.println("Who collaborated with any of the Beatles or any of their collaborators? (via recursion)");
+
+    String query = "[:find ?aname2\n" +
+                   " :in $ % [[?aname]]\n" +
+                   " :where (collab ?aname ?aname2)]\n";
 
     result = q(
-        "[:find ?aname2\n" +
-            " :in $ % [[?aname]]\n" +
-            " :where (collab ?aname ?aname2)]\n",
-        db, rules, list(list("Paul McCartney"))
-    );
-
-    result = q(
-        "[:find ?aname2\n" +
-            " :in $ % [[?aname]]\n" +
-            " :where (collab ?aname ?aname2)]\n",
-        db, rules, result
-    );
+               query, db, rules,
+                q(
+                  query, db, rules, list(list("John Lennon", "Paul McCartney",
+                                              "George Harrison", "Ringo Starr"))
+                 )
+              );
 
     System.out.println(result);
 
-    System.out.println("Who has more albums, Jay-Z or Beyoncé?");
-
-    result = q(
-        "[:find ?aname (count ?e)\n" +
-            " :with ?a\n" +
-            " :in $ ?criterion [?aname ...]\n" +
-            " :where\n" +
-            " [?a :artist/name ?aname]\n" +
-            " [?e ?criterion ?a]]\n",
-        db, ":abstractRelease/artists", list("Jay-Z", "Beyoncé Knowles")
-    );
-
-    System.out.println(result);
 
     System.out.println("Which artists have songs that might be covers of The Who (or vice versa)?");
 
