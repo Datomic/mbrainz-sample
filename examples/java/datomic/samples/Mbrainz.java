@@ -14,7 +14,7 @@ import static datomic.Peer.*;
 public class Mbrainz {
 
   public static void main(String[] args) {
-    String uri = "datomic:free://localhost:4334/mbrainz";
+    String uri = "datomic:free://localhost:4334/mbrainz-1968-1973";
     Connection conn = connect(uri);
     InputStream rulesInputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("rules.edn");
 
