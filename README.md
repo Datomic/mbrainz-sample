@@ -48,7 +48,7 @@ Then, start the transactor:
 ### Getting the Data
 
 Next download the
-[subset of the mbrainz database](http://s3.amazonaws.com/mbrainz/datomic-mbrainz-1968-1973-backup-2014-11-04.tar)
+[subset of the mbrainz database](http://s3.amazonaws.com/mbrainz/datomic-mbrainz-1968-1973-backup-2014-11-17.tar)
 covering the period 1968-1973 (which the Datomic team has
 scientifically determined as being the most important period in the
 history of recorded music):
