@@ -53,13 +53,13 @@ covering the period 1968-1973 (which the Datomic team has
 scientifically determined as being the most important period in the
 history of recorded music):
 
-    wget http://s3.amazonaws.com/mbrainz/datomic-mbrainz-1968-1973-backup-2014-11-04.tar -O mbrainz.tar
+    wget http://s3.amazonaws.com/mbrainz/datomic-mbrainz-1968-1973-backup-2014-11-17.tar -O mbrainz.tar
     tar -xvf mbrainz.tar
 
 Finally, [restore the backup](http://docs.datomic.com/backup.html):
 
     # prints progress -- ~1,000 segments in restore
-    bin/datomic restore-db file:///path/to/mbrainz-backup datomic:free://localhost:4334/mbrainz-1968-1973
+    bin/datomic restore-db file:///path/to/backup/mbrainz-1968-1973 datomic:free://localhost:4334/mbrainz-1968-1973
 
 ### Getting the Code
 
