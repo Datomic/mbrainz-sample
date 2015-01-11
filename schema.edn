@@ -273,9 +273,9 @@
   :db.install/_attribute :db.part/db}
 
  {:db/id #db/id[:db.part/db]
-  :db/ident :release/labels
+  :db/ident :release/label
   :db/valueType :db.type/ref
-  :db/cardinality :db.cardinality/many
+  :db/cardinality :db.cardinality/one
   :db/doc "The label on which the recording was released"
   :db.install/_attribute :db.part/db}
 
