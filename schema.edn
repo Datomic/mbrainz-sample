@@ -7,6 +7,7 @@
  ;; all super-enum values are represented as entities in the
  ;; data partition w/ :db/ident and one of the following name
  ;; attributes
+
  {:db/id #db/id[:db.part/db]
   :db/ident :country/name
   :db/valueType :db.type/string
@@ -15,24 +16,7 @@
   :db/doc "The name of the country"
   :db.install/_attribute :db.part/db}
 
- {:db/id #db/id[:db.part/db]
-  :db/ident :language/name
-  :db/valueType :db.type/string
-  :db/cardinality :db.cardinality/one
-  :db/unique :db.unique/value
-  :db/doc "The name of the written and spoken language"
-  :db.install/_attribute :db.part/db}
-
- {:db/id #db/id[:db.part/db]
-  :db/ident :script/name
-  :db/valueType :db.type/string
-  :db/cardinality :db.cardinality/one
-  :db/unique :db.unique/value
-  :db/doc "Name of written character set, e.g. Hebrew, Latin, Cyrillic"
-  :db.install/_attribute :db.part/db}
-
  ;; artist attributes
-
  {:db/id #db/id[:db.part/db]
   :db/ident :artist/gid
   :db/valueType :db.type/uuid
@@ -59,11 +43,13 @@
   :db/doc "The artist's name for use in alphabetical sorting, e.g. Beatles, The"
   :db.install/_attribute :db.part/db}
 
+ ; In latest version of db, this doc string is incorrectly listed as
+ ; "The artist's name for use in sorting, e.g. Beatles, The"
  {:db/id #db/id[:db.part/db]
   :db/ident :artist/type
   :db/valueType :db.type/ref
   :db/cardinality :db.cardinality/one
-  :db/doc "The artist's name for use in sorting, e.g. Beatles, The"
+  :db/doc "Enum, one of :artist.type/person, :artist.type/other, :artist.type/group."
   :db.install/_attribute :db.part/db}
 
  {:db/id #db/id[:db.part/db]
@@ -124,7 +110,6 @@
   :db.install/_attribute :db.part/db}
 
  ;; abstractRelease attributes
-
  {:db/id #db/id[:db.part/db]
   :db/ident :abstractRelease/gid
   :db/valueType :db.type/uuid
@@ -166,96 +151,7 @@
   :db/doc "The string represenation of the artist(s) to be credited on the abstract release"
   :db.install/_attribute :db.part/db}
 
- ;; label attributes
-
- {:db/id #db/id[:db.part/db]
-  :db/ident :label/gid
-  :db/valueType :db.type/uuid
-  :db/cardinality :db.cardinality/one
-  :db/unique :db.unique/identity
-  :db/index true
-  :db/doc "The globally unique MusicBrainz ID for the record label"
-  :db.install/_attribute :db.part/db}
-
- {:db/id #db/id[:db.part/db]
-  :db/ident :label/name
-  :db/valueType :db.type/string
-  :db/cardinality :db.cardinality/one
-  :db/fulltext true
-  :db/index true
-  :db/doc "The name of the record label"
-  :db.install/_attribute :db.part/db}
-
- {:db/id #db/id[:db.part/db]
-  :db/ident :label/sortName
-  :db/valueType :db.type/string
-  :db/cardinality :db.cardinality/one
-  :db/index true
-  :db/doc "The name of the record label for use in alphabetical sorting"
-  :db.install/_attribute :db.part/db}
-
- {:db/id #db/id[:db.part/db]
-  :db/ident :label/type
-  :db/valueType :db.type/ref
-  :db/cardinality :db.cardinality/one
-  :db/doc "Enum, one of :label.type/distributor, :label.type/holding,
-  :label.type/production, :label.type/originalProduction,
-  :label.type/bootlegProduction, :label.type/reissueProduction, or
-  :label.type/publisher."
-  :db.install/_attribute :db.part/db}
-
- {:db/id #db/id[:db.part/db]
-  :db/ident :label/country
-  :db/valueType :db.type/ref
-  :db/cardinality :db.cardinality/one
-  :db/doc "The country where the record label is located"
-  :db.install/_attribute :db.part/db}
-
- {:db/id #db/id[:db.part/db]
-  :db/ident :label/startYear
-  :db/valueType :db.type/long
-  :db/cardinality :db.cardinality/one
-  :db/index true
-  :db/doc "The year the label started business"
-  :db.install/_attribute :db.part/db}
-
- {:db/id #db/id[:db.part/db]
-  :db/ident :label/startMonth
-  :db/valueType :db.type/long
-  :db/cardinality :db.cardinality/one
-  :db/doc "The month the label started business"
-  :db.install/_attribute :db.part/db}
-
- {:db/id #db/id[:db.part/db]
-  :db/ident :label/startDay
-  :db/valueType :db.type/long
-  :db/cardinality :db.cardinality/one
-  :db/doc "The day the label started business"
-  :db.install/_attribute :db.part/db}
-
- {:db/id #db/id[:db.part/db]
-  :db/ident :label/endYear
-  :db/valueType :db.type/long
-  :db/cardinality :db.cardinality/one
-  :db/doc "The year the label stopped business"
-  :db.install/_attribute :db.part/db}
-
- {:db/id #db/id[:db.part/db]
-  :db/ident :label/endMonth
-  :db/valueType :db.type/long
-  :db/cardinality :db.cardinality/one
-  :db/doc "The month the label stopped business"
-  :db.install/_attribute :db.part/db}
-
- {:db/id #db/id[:db.part/db]
-  :db/ident :label/endDay
-  :db/valueType :db.type/long
-  :db/cardinality :db.cardinality/one
-  :db/doc "The day the label stopped business"
-  :db.install/_attribute :db.part/db}
-
  ;; release attributes
-
  {:db/id #db/id[:db.part/db]
   :db/ident :release/gid
   :db/valueType :db.type/uuid
@@ -270,27 +166,6 @@
   :db/valueType :db.type/ref
   :db/cardinality :db.cardinality/one
   :db/doc "The country where the recording was released"
-  :db.install/_attribute :db.part/db}
-
- {:db/id #db/id[:db.part/db]
-  :db/ident :release/labels
-  :db/valueType :db.type/ref
-  :db/cardinality :db.cardinality/many
-  :db/doc "The label on which the recording was released"
-  :db.install/_attribute :db.part/db}
-
- {:db/id #db/id[:db.part/db]
-  :db/ident :release/script
-  :db/valueType :db.type/ref
-  :db/cardinality :db.cardinality/one
-  :db/doc "The script used in the release"
-  :db.install/_attribute :db.part/db}
-
- {:db/id #db/id[:db.part/db]
-  :db/ident :release/language
-  :db/valueType :db.type/ref
-  :db/cardinality :db.cardinality/one
-  :db/doc "The language used in the release"
   :db.install/_attribute :db.part/db}
 
  {:db/id #db/id[:db.part/db]
@@ -383,7 +258,6 @@
   :db.install/_attribute :db.part/db}
 
  ;; media attributes
-
  {:db/id #db/id[:db.part/db]
   :db/ident :medium/tracks
   :db/valueType :db.type/ref
@@ -422,19 +296,10 @@
   :db.install/_attribute :db.part/db}
 
  ;; track attributes
-
  {:db/id #db/id[:db.part/db]
   :db/ident :track/artists
   :db/valueType :db.type/ref
   :db/cardinality :db.cardinality/many
-  :db/doc "The artists who contributed to the track"
-  :db.install/_attribute :db.part/db}
-
- {:db/id #db/id[:db.part/db]
-  :db/ident :track/artistCredit
-  :db/valueType :db.type/string
-  :db/cardinality :db.cardinality/one
-  :db/fulltext true
   :db/doc "The artists who contributed to the track"
   :db.install/_attribute :db.part/db}
 
