@@ -4,10 +4,10 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.7.0-alpha4"]
-                 [com.datomic/datomic-free "0.9.5067"]
+                 [com.datomic/datomic-free "0.9.5130"]
 
                  ;; To run on Datomic Pro, comment out the free
                  ;; version above, and enable the pro version below
-                 #_[com.datomic/datomic-pro "0.9.5067"]]
+                 #_[com.datomic/datomic-pro "0.9.5130"]]
   :source-paths ["src/clj" "examples/clj"]
   :jvm-opts ^:replace ["-Xmx2g" "-server"])
