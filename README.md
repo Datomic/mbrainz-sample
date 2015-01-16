@@ -112,6 +112,12 @@ the wiki.
 We would like to thank the MusicBrainz project for defining and
 compiling a great dataset, and for making it freely available.
 
+## Contributing
+
+This tutorial is developed internally by Cognitect. Issues can be filed using
+[Github Issues](https://github.com/Datomic/mbrainz-sample/issues). We do
+not accept pull request or patches.
+
 ## License
 
 Copyright © Metadata Partners, LLC. All rights reserved.
