@@ -57,7 +57,7 @@ public class Mbrainz {
 
     System.out.println(result);
 
-    System.out.println("What are the titles, album names, and release years of the John Lennon tracks released before or during 1980?");
+    System.out.println("What are the titles, album names, and release years of the John Lennon tracks released before 1970?");
 
     result = q(
         "[:find ?title ?album ?year\n" +
@@ -70,7 +70,7 @@ public class Mbrainz {
             " [?r :release/media ?m]\n" +
             " [?r :release/name  ?album]\n" +
             " [?r :release/year  ?year]\n" +
-            " [(<= ?year 1980)]]\n",
+            " [(< ?year 1970)]]\n",
         db, "John Lennon"
     );
 
@@ -93,7 +93,7 @@ public class Mbrainz {
 
     System.out.println(result);
 
-    System.out.println("What are the titles, artists, album names, and release years of all tracks having the word \"nevermore\" in their titles?");
+    System.out.println("What are the titles, artists, album names, and release years of all tracks having the word \"always\" in their titles?");
 
     result = q(
         "[:find ?title ?artist ?album ?year\n" +
@@ -117,18 +117,18 @@ public class Mbrainz {
 
     System.out.println(result);
 
-    System.out.println("Who either directly collaborated any of the Beatles, or collaborated with one of their collaborators?");
+    System.out.println("Who either directly collaborated with George Harrison, or collaborated with one of his collaborators?");
 
     result = q(
         "[:find ?aname ?aname2\n" +
             " :in $ % [?aname ...]\n" +
             " :where (collab-net-2 ?aname ?aname2)]\n",
-        db, rules, list("Paul McCartney", "John Lennon", "George Harrison", "Ringo Starr")
+        db, rules, list("George Harrison")
     );
 
     System.out.println(result);
 
-    System.out.println("Who collaborated with any of the Beatles or any of their collaborators? (via recursion)");
+    System.out.println("Who collaborated with Diana Ross or of her collaborators? (via recursion)");
 
     String query = "[:find ?aname2\n" +
                    " :in $ % [[?aname]]\n" +
@@ -137,15 +137,14 @@ public class Mbrainz {
     result = q(
                query, db, rules,
                 q(
-                  query, db, rules, list(list("John Lennon", "Paul McCartney",
-                                              "George Harrison", "Ringo Starr"))
+                  query, db, rules, list(list("Diana Ross"))
                  )
               );
 
     System.out.println(result);
 
 
-    System.out.println("Which artists have songs that might be covers of The Who (or vice versa)?");
+    System.out.println("Which artists have songs that might be covers of Bill Withers?");
 
     result = q(
         "[:find ?aname ?tname\n" +
@@ -162,7 +161,7 @@ public class Mbrainz {
             " [?t2 :track/artists ?a2]\n" +
             " [(!= ?a2 ?a)]\n" +
             " [?a2 :artist/name ?aname]]\n",
-        db, "The Who"
+        db, "Bill Withers"
     );
 
     System.out.println(result);

@@ -60,7 +60,7 @@
        [?r :release/media ?m]
        [?r :release/name  ?album]
        [?r :release/year  ?year]
-       [(<= ?year 1980)]]
+       [(< ?year 1970)]]
      db
      "John Lennon")
 
@@ -96,7 +96,7 @@
        :where (collab-net-2 ?aname ?aname2)]
      db
      rules
-     ["John Lennon" "Paul McCartney" "George Harrison" "Ringo Starr"])
+     ["George Harrison"])
 
 (def query '[:find ?aname2
              :in $ % [[?aname]]
@@ -108,7 +108,7 @@
      (d/q query
           db
           rules
-          [["John Lennon" "Paul McCartney" "George Harrison" "Ringo Starr"]]))
+          [["Diana Ross"]]))
 
 
 (d/q '[:find ?aname ?tname
@@ -126,4 +126,4 @@
        [(!= ?a2 ?a)]
        [?a2 :artist/name ?aname]]
      db
-     "The Who")
+     "Bill Withers")
