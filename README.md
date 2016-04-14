@@ -59,7 +59,7 @@ history of recorded music):
 Finally, [restore the backup](http://docs.datomic.com/backup.html):
 
     # prints progress -- ~1,000 segments in restore
-    bin/datomic restore-db file:///path/to/backup/mbrainz-1968-1973 datomic:free://localhost:4334/mbrainz-1968-1973
+    bin/datomic restore-db file:///path/to/backup/mbrainz-1968-1973 datomic:dev://localhost:4334/mbrainz-1968-1973
 
 ### Getting the Code
 
