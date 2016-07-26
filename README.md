@@ -63,7 +63,9 @@ Finally, [restore the backup](http://docs.datomic.com/backup.html):
     
 Windows users should specifty the folder using `file:///C:/path/to/backup` format. It's also important to specify `basis-t`, which you can find in the `roots` folder of the extracted archive:
 
-    bin\datomic restore-db "file:///C:/datomic/mbrainz-1968-1973" datomic:free://localhost:4334/mbrainz-1968-1973 130627
+    bin\datomic restore-db file:///C:/datomic/mbrainz-1968-1973 datomic:free://localhost:4334/mbrainz-1968-1973 130627
+    
+As usual, you can use double quotes around the file URL, if the name contains spaces.
 
 ### Getting the Code
 
