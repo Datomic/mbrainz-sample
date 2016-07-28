@@ -61,6 +61,8 @@ Finally, [restore the backup](http://docs.datomic.com/backup.html):
     # prints progress -- ~1,000 segments in restore
     bin/datomic restore-db file:///path/to/backup/mbrainz-1968-1973 datomic:free://localhost:4334/mbrainz-1968-1973
 
+Windows users should specify the backup path using the `file:///C:/path/to/backup` format and [specify a `basis-t`](http://docs.datomic.com/backup.html#listing-backups) to [restore](http://docs.datomic.com/backup.html#restoring). 
+
 ### Getting the Code
 
 Clone this git repo somewhere convenient:
