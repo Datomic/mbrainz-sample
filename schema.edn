@@ -110,7 +110,9 @@
   :db.install/_attribute :db.part/db}
 
  ;; abstractRelease attributes
- {:db/id #db/id[:db.part/db]
+ ;; NOTE: abstractRelease data are omitted from the 
+ ;; 1968-1973 mbrainz sample database
+{:db/id #db/id[:db.part/db]
   :db/ident :abstractRelease/gid
   :db/valueType :db.type/uuid
   :db/cardinality :db.cardinality/one
