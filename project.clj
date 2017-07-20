@@ -3,7 +3,7 @@
   :url "http://datomic.com/"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.7.0-alpha4"]
+  :dependencies [[org.clojure/clojure "1.8.0"]
                  [com.datomic/datomic-free "0.9.5561.50"]
 
                  ;; To run on Datomic Pro, comment out the free
