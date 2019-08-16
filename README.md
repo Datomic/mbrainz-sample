@@ -30,7 +30,8 @@ First download a
 [Datomic distribution](http://www.datomic.com/get-datomic.html) and
 unzip it somewhere convenient:
 
-    wget http://downloads.datomic.com/$VERSION/datomic-free-$VERSION.zip
+    wget https://my.datomic.com/downloads/free/$VERSION
+    mv $VERSION datomic-free-$VERSION.zip
     unzip datomic-free-$VERSION.zip
 
 For this walk-through, we'll use
