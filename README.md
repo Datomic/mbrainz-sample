@@ -13,7 +13,7 @@ The MusicBrainz dataset makes a great example database for learning,
 evaluating, or testing Datomic.  To create this sample database, we have
 exported the MusicBrainz distribution database as EDN data files,
 imported that data into Datomic according to the Schema described
-below, and [backed up](http://docs.datomic.com/backup.html) that
+below, and [backed up](http://docs.datomic.com/on-prem/backup.html) that
 database.
 
 Included in this project are:
@@ -26,24 +26,17 @@ Included in this project are:
 
 ### Getting Datomic
 
-First download a
-[Datomic distribution](http://www.datomic.com/get-datomic.html) and
-unzip it somewhere convenient:
+Follow the directs in your [My Datomic](http://my.datomic.com) account to 
+download a [Datomic distribution](http://www.datomic.com/get-datomic.html) and
+unzip it somewhere convenient.
 
-    wget http://downloads.datomic.com/$VERSION/datomic-free-$VERSION.zip
-    unzip datomic-free-$VERSION.zip
+Update `config/samples/dev-transactor-template.properties` with your license key
+where you see`license=`.
 
-For this walk-through, we'll use
-[Datomic Free](http://downloads.datomic.com/free.html) and local
-storage, but you could use
-[Datomic Pro](http://downloads.datomic.com/pro.html) with any of the
-available [storage options](http://docs.datomic.com/storage.html) by
-uncommenting the Pro dependency in [project.clj](project.clj).
+Start the transactor:
 
-Then, start the transactor:
-
-    cd datomic-free-$VERSION
-    bin/transactor config/samples/free-transactor-template.properties
+    cd datomic-pro-$VERSION
+    bin/transactor config/samples/dev-transactor-template.properties
 
 ### Getting the Data
 
@@ -56,12 +49,10 @@ history of recorded music):
     wget https://s3.amazonaws.com/mbrainz/datomic-mbrainz-1968-1973-backup-2017-07-20.tar -O mbrainz.tar
     tar -xvf mbrainz.tar
 
-Finally, [restore the backup](http://docs.datomic.com/backup.html):
+From the `datomic-pro-$VERSION` directory, [restore the backup](http://docs.datomic.com/on-prem/operation/backup.html#restoring):
 
     # prints progress -- ~1,000 segments in restore
-    bin/datomic restore-db file:///path/to/backup/mbrainz-1968-1973 datomic:free://localhost:4334/mbrainz-1968-1973
-
-Windows users should specify the backup path using the `file:///C:/path/to/backup` format and [specify a `basis-t`](http://docs.datomic.com/backup.html#listing-backups) to [restore](http://docs.datomic.com/backup.html#restoring). 
+    bin/datomic restore-db file://path/to/backup/mbrainz-1968-1973 datomic:dev://localhost:4334/mbrainz-1968-1973
 
 ### Getting the Code
 
@@ -79,8 +70,7 @@ Fire up your favorite IDE, and configure it to use both the included
 
     -Xmx2g -server
 
-Then visit the
-[queries](//github.com/Datomic/mbrainz-sample/wiki/Queries) page.
+Then visit the [queries](//github.com/Datomic/mbrainz-sample/wiki/Queries) page.
 
 #### From Clojure
 
@@ -89,8 +79,7 @@ Start up a Clojure REPL:
     # from the root of this mbrainz-sample repo
     lein repl
 
-Then
-[connect to the database and run the queries](//github.com/Datomic/mbrainz-sample/wiki/Queries).
+Then [connect to the database and run the queries](//github.com/Datomic/mbrainz-sample/wiki/Queries).
 
 ## Schema
 
@@ -105,9 +94,7 @@ wiki, or the [EDN schema](schema.edn) itself.
 
 ## Example Queries and Rules
 
-Please see the
-[queries](//github.com/Datomic/mbrainz-sample/wiki/Queries) page in
-the wiki.
+Please see the [queries](//github.com/Datomic/mbrainz-sample/wiki/Queries) page in the wiki.
 
 ## Thanks
 
