@@ -6,6 +6,6 @@
   :repositories {"my.datomic.com" {:url "https://my.datomic.com/repo"
                                    :creds :gpg}}
   :dependencies [[org.clojure/clojure "1.10.3"]
-                 [com.datomic/datomic-pro "1.0.6362"]]
+                 [com.datomic/datomic-pro "1.0.6610"]]
   :source-paths ["src/clj" "examples/clj"]
   :jvm-opts ^:replace ["-Xmx2g" "-server"])
