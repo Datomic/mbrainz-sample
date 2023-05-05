@@ -26,12 +26,8 @@ Included in this project are:
 
 ### Getting Datomic
 
-Follow the directs in your [My Datomic](http://my.datomic.com) account to 
-download a [Datomic distribution](http://www.datomic.com/get-datomic.html) and
-unzip it somewhere convenient.
-
-Update `config/samples/dev-transactor-template.properties` with your license key
-where you see`license=`.
+Follow the directs in https://docs.datomic.com/pro/releases.html to download 
+Datomic Pro and unzip it somewhere convenient.
 
 Start the transactor:
 
