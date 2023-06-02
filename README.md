@@ -29,6 +29,15 @@ Included in this project are:
 Follow the directs in https://docs.datomic.com/pro/releases.html to download 
 Datomic Pro and unzip it somewhere convenient.
 
+After unzipping, install the `datomic` dependency to your local maven repository:
+
+```shell
+cd datomic-pro-$VERSION
+bin/maven-install
+```
+
+The above requires the `mvn` binary installed locally (available from Homebrew via `brew install mvn`).
+
 Start the transactor:
 
     cd datomic-pro-$VERSION
