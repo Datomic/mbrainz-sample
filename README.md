@@ -48,7 +48,7 @@ history of recorded music):
 From the `datomic-pro-$VERSION` directory, [restore the backup](http://docs.datomic.com/on-prem/operation/backup.html#restoring):
 
     # prints progress -- ~1,000 segments in restore
-    bin/datomic restore-db file://path/to/backup/mbrainz-1968-1973 datomic:dev://localhost:4334/mbrainz-1968-1973
+    bin/datomic restore-db file:///path/to/backup/mbrainz-1968-1973 datomic:dev://localhost:4334/mbrainz-1968-1973
 
 ### Getting the Code
 
